@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Fake Image Detection</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #19b3ca, #1263a5);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        header {
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(5, 5, 5, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            background-color: #333333;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 20px auto;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+ 
+        input[type="submit"] {
+            background-color: #19b3ca;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1263a5;
+        }
+
+    </style>
+    <script>
+        function previewFile() {
+            var preview = document.getElementById('image_preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fake Image Detection</h1>
+    </header>
+
+    <div class="container">
+        <p>Use this page to detect if an image is genuine or fake. Upload the image using the form below and click on the "Detect" button to get the result.</p>
+
+        <form method="POST" action="fakeimage.html" enctype="multipart/form-data">
+            <label for="image_file">Select Image:</label>
+            <input type="file" id="image_file" name="image_file" onchange="previewFile()" required>
+            <img id="image_preview" src="" alt="Image Preview">
+            <input type="submit" value="Detect">
+        </form>
+    </div>
+    
+</body>
+<div class="footer">
+    <p>All rights reserved LDRP &copy; Fake Detection App</p>
+</div>
+</html>

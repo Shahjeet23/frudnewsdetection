@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Admin Dashboard</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #264653, #2a9d8f);
+            margin: 0;
+            padding: 0;
+            color: #0a0a0a;
+        }
+
+        header {
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(253, 243, 243, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(250, 249, 249, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #faf3f3;
+        }
+
+        th {
+            background-color: #264653;
+            color: #faf3f3;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: #264653;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #2a9d8f;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <h2>Welcome, {{ session['username'] }}</h2>
+    </header>
+
+    <div class="container">
+        <h2>Users:</h2>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+            </tr>
+            {% for username, user_data in users.items() %}
+            <tr>
+                <td>{{ username }}</td>
+                <td>{{ user_data['password'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Admins:</h2>
+        <table>
+            <tr>
+                <th>Admin Username</th>
+                <th>Admin Password</th>
+            </tr>
+            {% for admin_username, admin_data in admins.items() %}
+            <tr>
+                <td>{{ admin_username }}</td>
+                <td>{{ admin_data['admin_password'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="button-container">
+            <a class="button" href="/fakenews.html">Fake News Detection</a>
+            <a class="button" href="/fakeimage.html">Fake Image Detection</a>
+            <a class="button" href="/fakehandwriting.html">Fake Handwriting Detection</a>
+            <a class="button" href="/admin_register.html">Admin Registration</a>
+            <a class="button" href="/admin_login.html">Admin Login</a>
+            <a class="button" href="/logout.html">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

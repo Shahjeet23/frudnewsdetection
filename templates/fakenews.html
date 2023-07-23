@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Fake News Detection</title>
+    <style>
+        /* Add your CSS styles here */
+        /* ... (Your CSS styles here) ... */
+        .footer {
+            background-color: #333333;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function showResult(result) {
+            var resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<h3>Result:</h3><p>' + result + '</p>';
+        }
+
+        $(document).ready(function() {
+            $('form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/fakenews',
+                    data: formData,
+                    success: function(result) {
+                        showResult(result);
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = xhr.responseText;
+                        showResult('Error occurred during prediction: ' + errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fake News Detection</h1>
+    </header>
+
+    <div class="container">
+        <p>Use this page to detect if a piece of news content is genuine or fake. Enter the news content in the text area below and click on the "Detect" button to get the result.</p>
+
+        <form method="POST" action="/fakenews.html">
+
+            <label for="news_content">News Content:</label>
+            <textarea id="news_content" name="news_content" required></textarea>
+            <input type="submit" value="Detect">
+        </form>
+
+        <div class="result" id="result"></div>
+    </div>
+    
+</body>
+<div class="footer">
+    <p>All rights reserved LDRP &copy; Fake Detection App </p>
+</div>
+</html>

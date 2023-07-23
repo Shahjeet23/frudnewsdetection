@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Fake Handwriting Detection</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .footer {
+            background-color: #333333;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        header {
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(12, 12, 12, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+
+        input[type="submit"] {
+            background-color: #1a2980;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #26d0ce;
+        }
+
+    </style>
+    <script>
+        function previewFile() {
+            var preview = document.getElementById('handwriting_preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fake Handwriting Detection</h1>
+    </header>
+
+    <div class="container">
+        <p>Use this page to detect if a handwriting sample is genuine or fake. Upload the image of the handwriting sample using the form below and click on the "Detect" button to get the result.</p>
+
+        <form method="POST" action="fakehandwriting.html" enctype="multipart/form-data">
+            <label for="handwriting_sample">Upload Handwriting Sample:</label>
+            <input type="file" id="handwriting_sample" name="handwriting_sample" onchange="previewFile()" required>
+            <img id="handwriting_preview" src="" alt="Handwriting Sample Preview">
+            <input type="submit" value="Detect">
+        </form>
+    </div>
+    
+</body>
+<div class="footer">
+    <p>All rights reserved LDRP &copy; Fake Detection App</p>
+</div>
+</html>

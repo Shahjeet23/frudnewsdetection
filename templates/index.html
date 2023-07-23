@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #434bd6;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333333;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-menu-button {
+            background-color: transparent;
+            color: #ffffff;
+            border: none;
+            padding: 0;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .header-menu-button:focus {
+            outline: none;
+        }
+
+        .header-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+        }
+
+        .header-menu ul li {
+            margin-bottom: 10px;
+        }
+
+        .header-menu ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .header-menu ul li a:hover {
+            background-color: #555555;
+        }
+
+        .footer {
+            background-color: #333333;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .carousel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .carousel {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide:nth-child(1) {
+            background: linear-gradient(to bottom right, #3b7dff, #01a9fe);
+        }
+
+        .slide:nth-child(2) {
+            background: linear-gradient(to bottom right, #ff7f00, #ff0057);
+        }
+
+        .slide:nth-child(3) {
+            background: linear-gradient(to bottom right, #935aff, #6200ff);
+        }
+
+        .slide h2 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .slide p {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .slide a {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .slide a:hover {
+            background-color: #b24343;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .carousel-button {
+            background-color: #55489d;
+            color: #000000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .carousel-button:hover {
+            background-color: #5c369e;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("headerMenu");
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showSlide(slideIndex) {
+            var slides = document.getElementsByClassName("slide");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slides[slideIndex].classList.add("active");
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">Fake Detection App</div>
+        <div class="header-menu">
+            <button class="header-menu-button" onclick="toggleMenu()">Menu</button>
+            <ul id="headerMenu">
+                <li><a href="javascript:void(0)" onclick="showSlide(0)" style="background-color: #434bd6;">Fake News Detection</a></li>
+                <li><a href="javascript:void(0)" onclick="showSlide(1)" style="background-color: #f77041;">Fake Image Detection</a></li>
+                <li><a href="javascript:void(0)" onclick="showSlide(2)" style="background-color: #c573fe;">Fake Handwriting Detection</a></li>
+                {% if session['admin_username'] == 'adarsh' %}
+                <li><a href="admin.html" style="background-color: #79d96b;">Admin Dashboard</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="slide active">
+                <h2>Fake News Detection</h2>
+                <p>Detect and verify the authenticity of news articles to combat misinformation.</p>
+                <a href="fakenews.html">Learn More</a>
+            </div>
+            <div class="slide">
+                <h2>Fake Image Detection</h2>
+                <p>Identify manipulated or doctored images to prevent the spread of false visual information.</p>
+                <a href="fakeimage.html">Learn More</a>
+            </div>
+            <div class="slide">
+                <h2>Fake Handwriting Detection</h2>
+                <p>Analyze handwriting samples to determine if they are forged or authentic.</p>
+                <a href="fakehandwriting.html">Learn More</a>
+            </div>
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="showSlide(0)">1</button>
+            <button class="carousel-button" onclick="showSlide(1)">2</button>
+            <button class="carousel-button" onclick="showSlide(2)">3</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome, {{ session['username'] }}</h1>
+        <p>This is the description page for the Fake Detection App. Here, you can find information about the different types of detection and access the respective pages.</p>
+        <ul>
+            <li>
+                <a href="fakenews.html">Fake News Detection</a>:
+                Detect and verify the authenticity of news articles to combat misinformation.
+            </li>
+            <li>
+                <a href="fakeimage.html">Fake Image Detection</a>:
+                Identify manipulated or doctored images to prevent the spread of false visual information.
+            </li>
+            <li>
+                <a href="fakehandwriting.html">Fake Handwriting Detection</a>:
+                Analyze handwriting samples to determine if they are forged or authentic.
+            </li>
+            {% if session['username'] == 'admin' %}
+            <li>
+                <a href="admin.html">Admin Dashboard</a>:
+                Access the administrative dashboard to manage user accounts, review detection results, and perform system administration tasks.
+            </li>
+            {% endif %}
+        </ul>
+        <p>Additional content and instructions can be added here.</p>
+    </div>
+    
+</body>
+<div class="footer">
+    <p>All rights reserved Adarsh &copy; Fake Detection App</p>
+</div>
+</html>

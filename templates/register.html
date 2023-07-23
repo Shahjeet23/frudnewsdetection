@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Detection App - Register</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #00fffd, #0022ff);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            color: #fff;
+            text-align: right;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .carousel {
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            max-height: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            opacity: 0;
+            transform: translateZ(-400px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateZ(0);
+        }
+
+        .slide:nth-child(1) {
+            background-color: #0055ff;
+        }
+
+        .slide:nth-child(2) {
+            background-color: #00ddff;
+        }
+
+        .slide:nth-child(3) {
+            background-color: #0022ff;
+        }
+
+        .slide-content {
+            max-width: 80%;
+        }
+
+        .slide-content h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        .slide-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .slide-content button {
+            background-color: #00fffd;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .slide-content button:hover {
+            background-color: #00e0df;
+        }
+
+        .register-form {
+            display: none;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .register-form input[type="text"],
+        .register-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .register-form input[type="submit"] {
+            background-color: #00fffd;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .register-form input[type="submit"]:hover {
+            background-color: #00e0df;
+        }
+
+        .admin-register-form {
+            display: none;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-register-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .admin-register-form input[type="text"],
+        .admin-register-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .admin-register-form input[type="submit"] {
+            background-color: #00fffd;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .admin-register-form input[type="submit"]:hover {
+            background-color: #00e0df;
+        }
+
+        .footer {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var slides = document.getElementsByClassName('slide');
+            var currentSlideIndex = 0;
+            var totalSlides = slides.length;
+
+            function showSlide(index) {
+                if (index >= 0 && index < totalSlides) {
+                    slides[currentSlideIndex].classList.remove('active');
+                    slides[index].classList.add('active');
+                    currentSlideIndex = index;
+                }
+            }
+
+            setInterval(function() {
+                var nextSlideIndex = (currentSlideIndex + 1) % totalSlides;
+                showSlide(nextSlideIndex);
+            }, 3000);
+        });
+
+        function toggleForm(formId) {
+            var form = document.getElementById(formId);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="register.html">Register</a> | <a href="login.html">Login</a> |   <button onclick="toggleForm('adminRegisterForm')">Admin Register</button>
+    </div>
+
+    <div class="container">
+        <div class="carousel">
+            <div class="slide active">
+                <div class="slide-content">
+                    <h2>Welcome to Fake Detection App</h2>
+                    <p>A revolutionary platform that helps you identify fake information.</p>
+                    <button onclick="toggleForm('registerForm')">Register Now</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Real-time Detection</h2>
+                    <p>Our advanced algorithms analyze data and detect fake information instantly.</p>
+                    <button onclick="toggleForm('registerForm')">Get Started</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>User-Friendly Interface</h2>
+                    <p>Our intuitive and easy-to-use interface makes it simple to navigate and get accurate results.</p>
+                    <button onclick="toggleForm('registerForm')">Join Us Today</button>
+                </div>
+            </div>
+        </div>
+
+        <form id="registerForm" class="register-form" method="POST" action="register.html">
+            <h2>User Registration</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Register">
+        </form>
+
+        <form id="adminRegisterForm" class="admin-register-form" method="POST" action="register.html">
+            <h2>Admin Registration</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Register">   
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>All rights reserved &copy; Fake Detection App</p>
+    </div>
+</body>
+</html>
